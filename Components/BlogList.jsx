@@ -9,7 +9,7 @@ const BlogList = () => {
 
     return (
         <div>
-            <div className='flex justify-center gap-6 my-10'>
+            <div className='flex justify-center gap-6 my-10 flex-wrap'>
                 {['All', 'Technology', 'Startup', 'Lifestyle'].map((item) => (
                     <button
                         key={item}

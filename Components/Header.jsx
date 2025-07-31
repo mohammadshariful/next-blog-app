@@ -14,7 +14,7 @@ const Header = () => {
                 <p className='mt-10 max-w-[740px] mx-auto text-xs sm:text-base'>
                     Discover the latest insights and trends in the world of technology, design, and innovation. Stay updated with our curated collection of articles that inspire and inform.
                 </p>
-                <form className='flex justify-baseline mx-w-[500px] scale-75 sm:scale-100 mx-auto mt-10 border border-black shadow-[-7px_7px_0px_#000]'>
+                <form className='flex justify-between mx-w-[500px] scale-75 sm:scale-100 mx-auto mt-10 border border-black shadow-[-7px_7px_0px_#000]'>
                     <input type="email" placeholder='Enter your email' className='pl-4 outline-none' />
                     <button type='submit' className='border-1 border-black py-4 px-4 sm:px-8 active:bg-gray-600 active:text-white'>Subscribe</button>
                 </form>
