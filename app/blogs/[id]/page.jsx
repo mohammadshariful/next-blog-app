@@ -46,12 +46,13 @@ const page = ({ params }) => {
             </div>
             <div className='mx-5 max-w-[800px] md:mx-auto mt-[-100px] mb-10'>
                 {data?.image && <Image src={data?.image} width={800} height={500} alt='' className='w-full h-auto rounded-lg shadow-lg' />}
-                <h1 className='my-8 text-[26px] font-semibold'>Introduction :</h1>
-                <p>{data?.description}</p>
-                <h3 className='my-5 text-[18px] font-semibold'>Step 1: Self -Reflection and Goal setting</h3>
-                <p className='my-3 '>
+                {/* <h1 className='my-8 text-[26px] font-semibold'>Introduction :</h1> */}
+                {/* <p>{data?.description}</p> */}
+                <div className='mt-10' dangerouslySetInnerHTML={{ __html: data?.description }}></div>
+                {/* <h3 className='my-5 text-[18px] font-semibold'>Step 1: Self -Reflection and Goal setting</h3> */}
+                {/* <p className='my-3 '>
                     Self-reflection is the first step in managing your lifestyle. Take time to evaluate your current habits, routines, and overall well-being. Ask yourself questions like: What are my strengths and weaknesses? What areas of my life do I want to improve? Setting clear goals based on your reflections will give you direction and motivation.
-                </p>
+                </p> */}
 
             </div>
         </>
