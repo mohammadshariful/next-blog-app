@@ -18,3 +18,16 @@ export async function POST(request) {
         message: "Email Subscribed successfully",
     });
 }
+
+export async function GET() {
+    const emails = await EmailModel.find({});
+    return NextResponse.json(emails);
+}
+export async function DELETE(request) {
+    const id = request.nextUrl.searchParams.get("id");
+    if (!id) {
+        return NextResponse.json({ message: "Email ID is required" }, { status: 400 });
+    }
+    await EmailModel.findByIdAndDelete(id);
+    return NextResponse.json({ message: "Email deleted successfully" });
+}
