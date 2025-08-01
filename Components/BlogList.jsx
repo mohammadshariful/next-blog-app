@@ -1,11 +1,27 @@
-import { blog_data } from '@/Assets/assets';
-import React, { useState } from 'react';
+// import { blog_data } from '@/Assets/assets';
+import React, { useEffect, useState } from 'react';
 import BlogItem from './BlogItem';
+import axios from 'axios';
 
 const BlogList = () => {
     const [menu, setMenu] = useState('All');
+    const [blogsData, setBlogsData] = useState([]);
 
-    const filteredData = menu === 'All' ? blog_data : blog_data.filter(item => item.category === menu);
+    const fetchBlogs = async () => {
+        const response = await axios.get('/api/blog');
+        if (response.status === 200) {
+            // console.log(response);
+            setBlogsData(response.data);
+        }
+    }
+
+    useEffect(() => {
+        fetchBlogs();
+    }, [])
+
+    // console.log(blogsData);
+
+    const filteredData = menu === 'All' ? blogsData : blogsData.filter(item => item.category === menu);
 
     return (
         <div>

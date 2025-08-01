@@ -1,5 +1,6 @@
 'use client';
 import { assets, blog_data } from '@/Assets/assets';
+import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
@@ -9,14 +10,18 @@ const page = ({ params }) => {
     // console.log(params);
     const fetchBlogData = async () => {
         const { id } = await params;
-        // console.log(blog_data);
-
-        for (let i = 0; i < blog_data.length; i++) {
-            if (blog_data[i].id == id) {
-                setData(blog_data[i]);
-                break;
+        const response = await axios.get(`/api/blog`, {
+            params: {
+                id,
             }
+        });
+        if (response.status === 200) {
+            setData(response.data);
         }
+        else {
+            console.error("Failed to fetch blog data");
+        }
+
     }
 
     useEffect(() => {
@@ -35,12 +40,12 @@ const page = ({ params }) => {
                 </div>
                 <div className='text-center my-24'>
                     <h1 className='text-2xl sm:text-5xl font-semibold max-w-[700px] mx-auto'>{data?.title}</h1>
-                    <Image src={data?.author_img} width={60} height={60} alt='' className='mx-auto mt-6 border border-white rounded-full' />
+                    {data?.author_img && <Image src={data?.author_img} width={60} height={60} alt='' className='mx-auto mt-6 border border-white rounded-full' />}
                     <p className='mt-1 pb-2 text-lg mx-w-[740px] mx-auto'>{data?.author}</p>
                 </div>
             </div>
             <div className='mx-5 max-w-[800px] md:mx-auto mt-[-100px] mb-10'>
-                <Image src={data?.image} width={800} height={500} alt='' className='w-full h-auto rounded-lg shadow-lg' />
+                {data?.image && <Image src={data?.image} width={800} height={500} alt='' className='w-full h-auto rounded-lg shadow-lg' />}
                 <h1 className='my-8 text-[26px] font-semibold'>Introduction :</h1>
                 <p>{data?.description}</p>
                 <h3 className='my-5 text-[18px] font-semibold'>Step 1: Self -Reflection and Goal setting</h3>
